@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide — Stack Tecnológica | GuaipeCare</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #1e293b;
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        /* Controles de Apresentação */
+        .barra-controles {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .btn-imprimir {
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-imprimir:hover {
+            background-color: #7dd3fc;
+        }
+
+        /* O SLIDE 16:9 */
+        .slide {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background: #faf7f2;
+            background-image: radial-gradient(#e5d8c3 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 3px solid #e2d3be;
+            position: relative;
+        }
+
+        /* Cabeçalho do Slide */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px dashed #dbcaa8;
+            padding-bottom: 1.25rem;
+        }
+
+        .slide-titulo-bloco h2 {
+            font-family: Georgia, serif;
+            font-size: 2.3rem;
+            color: #382419;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .slide-subtitulo {
+            font-size: 1.05rem;
+            color: #786252;
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        .badge-ufpel {
+            background-color: #f0e4d2;
+            border: 1px solid #d9c4aa;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #5c4333;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Grid de Tecnologias */
+        .grid-tecnologias {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .card-tech {
+            background: #ffffff;
+            border: 1.5px solid #ebdcc8;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 3px 4px 0px #decbb5;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            transition: transform 0.2s ease;
+        }
+
+        .card-tech-topo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-box {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #faf6f0;
+            border-radius: 8px;
+            padding: 6px;
+            border: 1px solid #ebdcc8;
+            flex-shrink: 0;
+        }
+
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .tech-info h3 {
+            font-family: Georgia, serif;
+            font-size: 1.15rem;
+            color: #362419;
+            line-height: 1.2;
+        }
+
+        .tech-camada {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #9c7b65;
+            letter-spacing: 0.04em;
+        }
+
+        .tech-descricao {
+            font-size: 0.85rem;
+            color: #524035;
+            line-height: 1.45;
+        }
+
+        .tech-motivo {
+            font-size: 0.78rem;
+            color: #715b4d;
+            background-color: #faf5ed;
+            border-left: 3px solid #d4bda4;
+            padding: 0.35rem 0.5rem;
+            border-radius: 0 4px 4px 0;
+            margin-top: auto;
+        }
+
+        .tech-motivo strong {
+            color: #443024;
+        }
+
+        /* Rodapé do Slide */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1.5px dashed #dbcaa8;
+            padding-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #8c7362;
+        }
+
+        .equipe-lista {
+            font-weight: 600;
+            color: #4a3427;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .barra-controles {
+                display: none;
+            }
+            .slide {
+                max-width: 100%;
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="barra-controles">
+        <span>💡 Dica: Você pode usar <strong>Ctrl + P</strong> para salvar como PDF ou dar um print nesta tela.</span>
+        <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+    </div>
+
+    <section class="slide">
+        <!-- Cabeçalho -->
+        <header class="slide-header">
+            <div class="slide-titulo-bloco">
+                <h2>🐾 GuaipeCare — Stack Tecnológica</h2>
+                <p class="slide-subtitulo">Arquitetura de baixo custo e alta eficiência para identificação de animais comunitários</p>
+            </div>
+            <div class="badge-ufpel">
+                UFPEL — Metodologia Científica<br>
+                Profs. Ana Marilza Pernas e Tatiana Aires
+            </div>
+        </header>
+
+        <!-- Grade de Tecnologias -->
+        <div class="grid-tecnologias">
+
+            <!-- 1. Hardware NFC -->
+            <div class="card-tech">
+                <div class="card-tech-topo">
+                    <div class="logo-box">
+                        <img src="{{ url_for('static', filename='logos/nfc.svg') }}" alt="NFC">
+                    </div>
+                    <div class="tech-info">
+                        <div class="tech-camada">Hardware Físico</div>
+                        <h3>Tag NFC Passiva</h3>
+                    </div>
+                </div>
+                <p class="tech-descricao">Chips NTAG213 / NTAG215 acoplados à coleira. Redirecionamento instantâneo via aproximação.</p>
+                <div class="tech-motivo">
+                    <strong>Por que foi escolhido:</strong> Custo baixíssimo (~R$ 1,50), sem bateria, impermeável e dispensa instalação de aplicativos.
+                </div>
+            </div>
+
+            <!-- 2. Backend Flask & Python -->
+            <div class="card-tech">
+                <div class="card-tech-topo">
+                    <div class="logo-box">
+                        <img src="{{ url_for('static', filename='logos/python.svg') }}" alt="Python">
+                    </div>
+                    <div class="tech-info">
+                        <div class="tech-camada">Backend / API</div>
+                        <h3>Python 3 &amp; Flask</h3>
+                    </div>
+                </div>
+                <p class="tech-descricao">Microframework web para roteamento RESTful, Application Factory e tratamento seguro de requisições.</p>
+                <div class="tech-motivo">
+                    <strong>Por que foi escolhido:</strong> Rápido ciclo de desenvolvimento no MVP, footprint de memória mínimo e facilidade de manutenção.
+                </div>
+            </div>
+
+            <!-- 3. Banco de Dados SQLite -->
+            <div class="card-tech">
+                <div class="card-tech-topo">
+                    <div class="logo-box">
+                        <img src="{{ url_for('static', filename='logos/sqlite.svg') }}" alt="SQLite">
+                    </div>
+                    <div class="tech-info">
+                        <div class="tech-camada">Banco de Dados</div>
+                        <h3>SQLite &amp; SQLAlchemy</h3>
+                    </div>
+                </div>
+                <p class="tech-descricao">Banco de dados relacional embutido com ORM para garantia de integridade referencial e histórico desacoplado.</p>
+                <div class="tech-motivo">
+                    <strong>Por que foi escolhido:</strong> Não requer servidor de banco dedicado, portátil em arquivo único e seguro para replicação da demo.
+                </div>
+            </div>
+
+            <!-- 4. Frontend & Geolocalização -->
+            <div class="card-tech">
+                <div class="card-tech-topo">
+                    <div class="logo-box">
+                        <img src="{{ url_for('static', filename='logos/javascript.svg') }}" alt="JavaScript">
+                    </div>
+                    <div class="tech-info">
+                        <div class="tech-camada">Frontend &amp; GPS</div>
+                        <h3>Vanilla JS &amp; Geolocation</h3>
+                    </div>
+                </div>
+                <p class="tech-descricao">HTML5, Jinja2 e JavaScript nativo com <code>navigator.geolocation</code> e envio assíncrono via <code>fetch</code>.</p>
+                <div class="tech-motivo">
+                    <strong>Por que foi escolhido:</strong> Zero bibliotecas externas pesadas, carregamento ultrarrápido em 4G/3G e consentimento voluntário.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="slide-footer">
+            <div>
+                <strong>Equipe:</strong> <span class="equipe-lista">Lucas Dias, Lúcio Vagner, Luísa Böhm</span>
+            </div>
+            <div>
+                <span>Coleira Inteligente para Cães Comunitários</span>
+            </div>
+        </footer>
+    </section>
+
+</body>
+</html>
