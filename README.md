@@ -42,9 +42,8 @@ Para facilitar apresentações e testes após clonar o repositório, o banco de 
 
 | Animal | Tag NFC | Descrição | Rota Pública de Demonstração |
 |---|---|---|---|
-| **Almofadinhas** 🐕 | `almofadinhas` | Cão da integrante Luísa Böhm (com 6 fotos) | `http://localhost:5000/a/almofadinhas` |
+| **Almofadinhas** 🐕 | `almofadinhas` | Cadela da integrante Luísa Böhm (com 6 fotos) | `http://localhost:5000/a/almofadinhas` |
 | **Caramelo** 🐕 | `QI3u1Kd84hk` | Mascote comunitário do campus da UFPel | `http://localhost:5000/a/QI3u1Kd84hk` |
-| **Orelha** 🕊️ | `tsLaXibfAwM` | *Easter egg* / Homenagem comunitária | `http://localhost:5000/a/tsLaXibfAwM` |
 
 *Acessando a raiz (`http://localhost:5000/`), o sistema exibe o menu com as coleiras disponíveis para simular a aproximação NFC.*
 
@@ -96,7 +95,7 @@ guaipecare/
 │   └── static/
 │       ├── css/style.css     # Estilos mobile-first sem frameworks
 │       ├── js/geolocalizacao.js # Script nativo de geolocalização e envio
-│       └── img/              # Imagens locais (ex: cao-orelha-3.jpg)
+│       └── img/              # Imagens locais dos animais (ex: 001.jpeg)
 ├── docs/
 │   └── canvas_guaipecare.pdf # Business Model Canvas do projeto
 ├── config.py                 # Configurações do Flask e SQLite

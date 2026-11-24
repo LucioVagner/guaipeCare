@@ -1,4 +1,4 @@
-"""Script para popular o banco de dados com os animais da demonstração do GuaipeCare.
+"""Script para popular o banco de dados com os animais de demonstração do GuaipeCare.
 
 Garante que os dados da demo fiquem salvos de forma reproduzível:
 - Tags NFC fixas e estáveis para a apresentação (não mudam ao rodar o seed)
@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
 # ==============================================================================
-# DADOS DOS ANIMAIS DA DEMO — Edite ou adicione novos animais aqui
+# DADOS DOS ANIMAIS DA DEMO
 # ==============================================================================
 ANIMAIS_DEMO = [
     {
@@ -26,7 +26,6 @@ ANIMAIS_DEMO = [
             "longitude": -52.3426,
             "data_sp": datetime(2026, 11, 22, 9, 30, tzinfo=ZoneInfo("America/Sao_Paulo")),
         },
-        "destaque_demo": True,
     },
     {
         "nome": "Caramelo",
@@ -41,22 +40,6 @@ ANIMAIS_DEMO = [
             "longitude": -52.3376,
             "data_sp": datetime(2026, 11, 21, 14, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
         },
-        "destaque_demo": True,
-    },
-    {
-        "nome": "Orelha",
-        "tag": "tsLaXibfAwM",
-        "especie": "Cão",
-        "descricao": "Daniel Pontes deseja justiça pelo seu cachorro.",
-        "vacinas": "Polivalente V10 (em dia)\nAntirrábica (em dia)\nCastrado e microchipado",
-        "foto_url": "/static/img/cao-orelha-3.jpg, /static/img/orelha-daniel.jpg",
-        "contato": "Coletivo de Cuidadores Comunitários: (48) 99888-0000 | memorial.orelha@guaipecare.org",
-        "avistamento_inicial": {
-            "latitude": -27.4011,
-            "longitude": -48.4116,
-            "data_sp": datetime(2026, 1, 4, 10, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
-        },
-        "destaque_demo": False,  # Easter Egg da demo
     },
 ]
 # ==============================================================================

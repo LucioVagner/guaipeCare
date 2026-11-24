@@ -17,13 +17,9 @@ FUSO_BRASILIA = ZoneInfo("America/Sao_Paulo")
 @public.route("/")
 def index():
     """Redireciona para o animal ou exibe menu de demonstração se houver múltiplos."""
-    todos_animais = Animal.query.all()
-    if not todos_animais:
+    animais = Animal.query.all()
+    if not animais:
         return "Nenhum animal cadastrado. Execute 'python seed.py'.", 404
-
-    # Filtra os animais principais da demo (Almofadinhas e Caramelo) e deixa Orelha como Easter Egg
-    animais_principais = [a for a in todos_animais if a.nome != "Orelha"]
-    orelha = next((a for a in todos_animais if a.nome == "Orelha"), None)
 
     template = """
     {% extends "base.html" %}
@@ -32,15 +28,15 @@ def index():
     <article class="cartao">
         <header class="cabecalho-animal">
             <div class="titulo-linha">
-                <h1>Amigos Cadastrados</h1>
+                <h1>Animais Cadastrados</h1>
                 <span class="badge-especie">🐾 Demonstração</span>
             </div>
             <p class="descricao" style="margin-top: 0.25rem;">
-                Toque em uma coleira para simular a aproximação da tag NFC:
+                Selecione uma coleira para simular a aproximação da tag NFC:
             </p>
         </header>
         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1rem;">
-            {% for animal in animais_principais %}
+            {% for animal in animais %}
             <li style="padding: 0.85rem 1rem; border: 1.5px solid #ebdcc8; border-radius: 12px; background: #fdfbf7; box-shadow: 2px 2px 0px #ded0bd; transition: transform 0.15s ease;">
                 <a href="{{ url_for('public.pagina_animal', tag=animal.tag) }}" style="text-decoration: none; color: inherit; display: block;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -49,7 +45,7 @@ def index():
                             {{ animal.nome }}
                         </strong>
                         <span style="font-size: 0.8rem; background: #f5ede1; border: 1px solid #e0d0bc; padding: 0.15rem 0.5rem; border-radius: 12px; color: #5a3e2b; font-weight: 600;">
-                            {% if animal.nome == "Almofadinhas" %}Pet da Luísa (Equipe){% else %}{{ animal.especie }}{% endif %}
+                            {{ animal.especie }}
                         </span>
                     </div>
                     <div style="font-size: 0.82rem; color: #826c5c; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.35rem;">
@@ -59,18 +55,10 @@ def index():
             </li>
             {% endfor %}
         </ul>
-
-        {% if orelha %}
-        <footer style="margin-top: 1.5rem; text-align: right; border-top: 1px dashed #e8dfd1; padding-top: 0.75rem;">
-            <a href="{{ url_for('public.pagina_animal', tag=orelha.tag) }}" style="font-size: 0.75rem; color: #a89685; text-decoration: none;" title="Memorial do Cão Orelha">
-                🕊️ <em>memorial / easter egg</em>
-            </a>
-        </footer>
-        {% endif %}
     </article>
     {% endblock %}
     """
-    return render_template_string(template, animais_principais=animais_principais, orelha=orelha)
+    return render_template_string(template, animais=animais)
 
 
 @public.route("/tecnologias")
